@@ -1,0 +1,20 @@
+{% extends 'registration/layouts/default.html'%}
+
+{% block content %}
+<div class="container-signup col-5">
+    <div class="card">
+        <div class="card-header">
+                        <h1>Sign Up</h1>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-info">Sign up</button>
+            </form>   
+        </div>
+    </div>
+</div>
+
+
+{% endblock%}

@@ -1,0 +1,57 @@
+{% extends "core/layouts/default.html" %}
+
+{% block h1 %}
+<div class="bloc">
+    <h1>Créer votre projet</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+    <div class="bloc-form">
+        <form method="POST" action="{% url 'projet' %}">
+            {% csrf_token %}
+           
+            {% for f in form %}
+            <div class="form-group">
+                {{ f.label_tag}}
+                {{ f }}
+            </div>
+            {% if f.help_text %}
+                <small class="form-text text-muted">{{ f.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+            <div class="alert alert-danger" role="alert">{{ error }}</div>
+            {% endfor %}
+            </p>
+                {% endfor %}
+            <input type="hidden" name="user" value="{{user}}">
+               
+                <div class="form-group"><button class="btn btn-info" type="submit">Enregistrer</button></div> 
+            
+        </form>
+    </div>
+    
+        <hr>
+
+    <div class="bloc">
+        <h2>Mes projets </h2>
+        
+        {% for p in projects %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">{{p.name}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{p.domain}}</h6>
+                <p>Date : {{ p.created_a }}</p>
+                <a href="{% url 'crawler' id=crawl.id %}" class="btn">Voir</a>
+            
+                </div>
+            </div>
+        {% endfor%}
+    </div>
+    {% else %}
+        <p>Merci de vous connecter pour créer un projet</p>
+        
+    {% endif %}
+{% endblock %}

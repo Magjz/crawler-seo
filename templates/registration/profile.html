@@ -1,0 +1,12 @@
+{% extends 'core/layouts/default.html'%}
+
+{% block content %}
+
+<p>Hello la page profile</p>
+
+<form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+            <button id="submit" type="submit">Submit</button>
+</form>
+{% endblock %}

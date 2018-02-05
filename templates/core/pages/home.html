@@ -1,0 +1,16 @@
+{% extends "core/layouts/default.html" %}
+
+{% block h1 %}
+<div class="bloc">
+    <h1>Bienvenue sur la page d'accueil</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+    {% else %}
+        <p>NOT LOGGED IN</p>
+        
+    {% endif %}
+{% endblock %}
